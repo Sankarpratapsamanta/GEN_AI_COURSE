@@ -1,0 +1,17 @@
+LLM - Large Language Model
+
+Input -> LLM -> Output
+
+
+Input
+---------
+What is MCP
+    |
+    LLM
+    |
+    Output
+
+
+LLM ->Component
+
+
