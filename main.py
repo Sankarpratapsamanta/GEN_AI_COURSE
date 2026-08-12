@@ -28,15 +28,14 @@ prompt = ChatPromptTemplate.from_messages([
     )
 ])
 
+chain = prompt | llm
+
 @app.post("/chat")
 async def chat(request:ChatRequest):
 
-    messages = prompt.invoke({
-        "question":request.message
+    res = await chain.ainvoke({
+        "question": request.message
     })
-    res = await llm.ainvoke(
-        messages
-    )
 
     return {
         "response":res.content
