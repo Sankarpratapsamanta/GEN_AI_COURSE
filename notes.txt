@@ -1,17 +1,23 @@
-LLM - Large Language Model
-
-Input -> LLM -> Output
-
-
 Input
----------
-What is MCP
-    |
-    LLM
-    |
-    Output
+
+Prompt ->
+    Role
+    Task
+    Context
+    Example
+
+ChatPromptTemplate
 
 
-LLM ->Component
+prompt = ChatPromptTemplate.form_messages([
+    {
+        "role":"system",
+        "content":"You are an Ai company Assistant"
+    },
 
+    {
+        "role":"human",
+        "content":"{question}"
+    }
 
+])

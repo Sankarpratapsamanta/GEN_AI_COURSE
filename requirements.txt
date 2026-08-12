@@ -3,3 +3,4 @@ uvicorn
 langchain-groq
 pydantic-settings
 pydantic
+langchain-core
