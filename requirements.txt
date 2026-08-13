@@ -4,3 +4,7 @@ langchain-groq
 pydantic-settings
 pydantic
 langchain-core
+langchain-chroma
+langchain-huggingface
+sentence-transformers
+chromadb
