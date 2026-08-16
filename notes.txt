@@ -1,0 +1,7 @@
+RAG = Retrieval Augmented Generation
+
+Stage - 1 - >Indexing
+Docs -> Chunks -> Embeddings -> Vector Database
+
+Stage - 2 -> Retrival + Generation
+User Q -> Retriever -> Relevant Document ->Prompt -> LLM -> Answer

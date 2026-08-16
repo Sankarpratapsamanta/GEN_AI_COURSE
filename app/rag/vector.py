@@ -36,15 +36,15 @@ vectorstore = Chroma.from_documents(
     collection_name="company_documents"
 )
 
-
-query = "How many vacation days do employees get?"
-
-result = vectorstore.similarity_search(query,k=2)
-
-
-for doc in result:
-    print("Content:")
-    print(doc.page_content)
-
-    print("\n Metadata: ")
-    print(doc.metadata)
+#
+# query = "How many vacation days do employees get?"
+#
+# result = vectorstore.similarity_search(query,k=2)
+#
+#
+# for doc in result:
+#     print("Content:")
+#     print(doc.page_content)
+#
+#     print("\n Metadata: ")
+#     print(doc.metadata)
