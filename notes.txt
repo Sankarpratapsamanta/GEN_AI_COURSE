@@ -1,7 +1,36 @@
-RAG = Retrieval Augmented Generation
+Tool Calling
+===================
 
-Stage - 1 - >Indexing
-Docs -> Chunks -> Embeddings -> Vector Database
+Q= "What the current weather in delhi?"
 
-Stage - 2 -> Retrival + Generation
-User Q -> Retriever -> Relevant Document ->Prompt -> LLM -> Answer
+User->LLM->Tool-> Tool Result -> LLM -> Answer
+            |
+            Current Weather
+
+
+Multiple Tool Calling:
+
+USER->LLM->TOOL->TOOL RESULT ->LLM->TOOL->TOOL RESULT ->LLM -> ANSWER
+
+
+Q-) What is tool?
+Ans- A tool is a simply function that the AI application allows the llm to request .
+
+Example:
+------------
+@tool
+def current_weather(city:str):
+    """Get the current weather for a city.""" ->Important
+    return "the weather is ......."
+
+
+
+Tool Schema
+---------------------
+
+Name:current_weather
+
+Description:"Get the current weather for a city."
+
+Input:city
+
