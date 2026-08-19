@@ -1,11 +1,22 @@
-AI Agents
-===============
+MCP -> MODEL CONTEXT PROTOCOL
+==========
+PROTOCOL -> Like HTTP , SMTP
 
-Prompt = "Where is the company located and how many employees are there?"
-              ChooseTools Tool Execute
-                  |        |
-User -> AGENT -> LLM -> AGENT -> Tool Result -> LLM -> Answer
-          |
-    Tools + User Prompt
+What is mcp?
+MCP is a protocol that standardized how AI application interact with external capabilities and context.
 
+HOST VS CLIENT VS SERVER
+=========================
+
+Host -> You
+
+Waiter -> MCP Client
+
+Chef -> MCP Server
+
+
+User -> Agent -> LLM -> Agent -> MCP Client -> MCP Server -> Result -> MCP Client -> Agent -> LLM -> Answer
+
+
+TOOLS / RESOURCES / PROMPTS
 
