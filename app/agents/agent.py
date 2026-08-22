@@ -3,6 +3,7 @@ from app.tools.company_tools import (get_employee_count,get_company_location,get
 from langchain.agents import create_agent
 from app.core.config import settings
 from app.rag.retriever import search_company_documents
+from app.mcp_client.client import get_mcp_tools
 
 
 
@@ -23,9 +24,12 @@ async def create_company_agent():
         search_company_documents
     ]
 
+    mcp_tools=(await get_mcp_tools())
+
     tools=(
         functional_tools
         + rag_tools
+        + mcp_tools
     )
 
     agent = create_agent(
