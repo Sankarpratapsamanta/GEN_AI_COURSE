@@ -1,22 +1,10 @@
-MCP -> MODEL CONTEXT PROTOCOL
-==========
-PROTOCOL -> Like HTTP , SMTP
+1 conversation ->ALL
 
-What is mcp?
-MCP is a protocol that standardized how AI application interact with external capabilities and context.
-
-HOST VS CLIENT VS SERVER
-=========================
-
-Host -> You
-
-Waiter -> MCP Client
-
-Chef -> MCP Server
+1000 users
 
 
-User -> Agent -> LLM -> Agent -> MCP Client -> MCP Server -> Result -> MCP Client -> Agent -> LLM -> Answer
+AMIT - >1 Conversation
+     -> 2 Conversation
 
-
-TOOLS / RESOURCES / PROMPTS
-
+Rahul ->1 Consersation
+      ->

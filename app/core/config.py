@@ -5,6 +5,8 @@ class Settings(BaseSettings):
 
     groq_model:str = "llama-3.3-70b-versatile"
 
+    database_url:str
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
