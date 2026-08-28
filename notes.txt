@@ -1,10 +1,12 @@
-1 conversation ->ALL
+LangGraph
+================
 
-1000 users
+LangChain gives you the components but LangGraph gives you control over how those components execute .
 
+STATE = State is the information that travels through the graph .
 
-AMIT - >1 Conversation
-     -> 2 Conversation
-
-Rahul ->1 Consersation
-      ->
+START
+NODE = A Node is a function that performs some work.
+EDGE = An edge determine where execution goes next.
+END
+Conditional Edge =  Which path should execution take

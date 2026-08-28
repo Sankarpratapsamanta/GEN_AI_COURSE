@@ -24,6 +24,12 @@ def create_leave_request(employee_name:str,days:int,reason:str):
         f"Leave request created for {employee_name}. Days :{days}. Reason:{reason}"
     )
 
+@mcp.tool(description="Create an new employee request.")
+def create_new_employee(employee_name:str,department:str):
+    return (
+        f"{employee_name} with:{department} is successfully created."
+    )
+
 @mcp.resource("hr://working-hours")
 def working_hours():
     return (
