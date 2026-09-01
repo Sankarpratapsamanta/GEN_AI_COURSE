@@ -49,7 +49,8 @@ async def chat(request:ChatRequest):
     config = {
         "configurable":{
             "thread_id":request.conversation_id,
-        }
+        },
+        "recursion_limit":30
     }
 
     result = await graph.ainvoke(

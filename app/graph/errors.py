@@ -1,0 +1,2 @@
+class RetryableToolError(Exception):
+    pass

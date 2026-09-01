@@ -6,11 +6,12 @@ from app.graph.nodes import (load_memory,create_agent_node,save_company_memory)
 from app.tools.company_tools import (get_employee_count,get_company_location,get_working_hours)
 from app.mcp_client.client import get_mcp_tools
 from app.rag.retriever import search_company_documents
+from app.graph.retry_tool import make_all_tools_retryable
 
 async def create_company_graph(checkpointer):
     mcp_tools = (await get_mcp_tools())
 
-    tools = [
+    original_tools = [
         get_employee_count,
         get_company_location,
         get_working_hours,
@@ -18,9 +19,11 @@ async def create_company_graph(checkpointer):
         *mcp_tools,
     ]
 
+    tools = make_all_tools_retryable(original_tools)
+
     agent = create_agent_node(tools)
 
-    tool_node = ToolNode(tools)
+    tool_node = ToolNode(tools,handle_tool_errors=True)
 
     builder = StateGraph(CompanyAgentState)
 
