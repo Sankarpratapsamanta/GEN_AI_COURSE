@@ -40,7 +40,6 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-
 @app.post("/chat")
 async def chat(request:ChatRequest):
     if graph is None:
@@ -59,7 +58,10 @@ async def chat(request:ChatRequest):
                 HumanMessage(content = request.message)
             ],
             "user_id":request.user_id,
-            "long_term_memory":[]
+            "user_role":request.user_role,
+            "long_term_memory":[],
+            "security_error":None,
+            "blocked_tool_call_id":None
         },
         config=config
     )

@@ -13,7 +13,7 @@ def make_retryable_tool(tool):
         name=tool.name,
         description=tool.description,
         args_schema=tool.args_schema,
-        response_format=getattr(tool, "response_format", "content"),
+        response_format="content",
     )
 
     return retryable_tool
