@@ -47,11 +47,11 @@ def validate_tool_arguments(tool_name:str, tool_arguments:Any):
     return True,None
 
 def authorize_tool(tool_name:str,user_role:str):
+
+    # if tool_name == "create_leave_request" or tool_name == "create_new_employee":
     policy = TOOL_POLICIES.get(tool_name)
 
     print("USER ROLE:", user_role)
-
-    print("ALLOWED:" ,policy["allowed_roles"])
 
     if policy is None:
         return True,None
@@ -62,6 +62,8 @@ def authorize_tool(tool_name:str,user_role:str):
         return False,"You are not allowed to use this tool"
 
     return True,None
+    # else:
+    #     return True, None
 
 def check_tool_security(tool_name:str, tool_arguments:Any,user_role:str):
     valid,error = validate_tool_arguments(tool_name,tool_arguments)

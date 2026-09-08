@@ -1,9 +1,10 @@
 from langchain_core.messages import SystemMessage,AIMessage,ToolMessage
-from app.llm import llm
+from app.llm import (llm,structured_llm)
 from app.memory.service import (extract_memory,get_memory,save_memory)
 from app.guardrails.tool_guardrail import check_tool_security
 
 from app.graph.state import CompanyAgentState
+
 
 
 async def load_memory(state:CompanyAgentState):
@@ -132,3 +133,17 @@ async def output_blocked_node(state:CompanyAgentState):
         ]
     }
 
+async def structured_output_node(state:CompanyAgentState):
+    res = await structured_llm.ainvoke([
+        SystemMessage(content="""
+        You are the final response formatter for an AI Company Assistant.
+        
+        Read the conversation and provide the final answer to the user .
+        
+        Return only the required structured response.
+        """),*state["messages"],
+    ])
+
+    return {
+        "structured_response":res
+    }
