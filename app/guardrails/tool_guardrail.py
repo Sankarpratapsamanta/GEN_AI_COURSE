@@ -51,8 +51,6 @@ def authorize_tool(tool_name:str,user_role:str):
 
     print("USER ROLE:", user_role)
 
-    print("ALLOWED:" ,policy["allowed_roles"])
-
     if policy is None:
         return True,None
 

@@ -2,7 +2,18 @@ from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP("HR MCP SERVER")
 
-@mcp.tool(description="Get employee information.")
+@mcp.tool(description="""
+    Get the company employee profile for a specific employee.
+    
+    Required arguments:
+    employee_name:
+        The exact name of the employee whose profile is requested.
+    
+    Example:
+    User:"What is Vikas employee profile?"
+    Call:
+    get_employee_profile(employee_name="Vikas")
+""")
 def get_employee_profile(employee_name:str):
     employees={
         "Alice":"Alice is a Senior Python Developer in the Engineering Department",
@@ -24,7 +35,14 @@ def create_leave_request(employee_name:str,days:int,reason:str):
         f"Leave request created for {employee_name}. Days :{days}. Reason:{reason}"
     )
 
-@mcp.tool(description="Create an new employee request.")
+@mcp.tool(description="""Create an new employee request.
+
+    Required arguments:
+    employee_name:
+        The exact name of the employee whose profile is require to create.
+    department:
+        The department where the new employee will work , such as Engineering , HR , Finance
+""")
 def create_new_employee(employee_name:str,department:str):
     return (
         f"{employee_name} with:{department} is successfully created."

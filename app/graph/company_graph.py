@@ -2,7 +2,7 @@ from langgraph.graph import (StateGraph,START,END)
 
 from langgraph.prebuilt import (ToolNode,tools_condition)
 from app.graph.state import CompanyAgentState
-from app.graph.nodes import (load_memory,create_agent_node,save_company_memory,input_blocked_node,security_node,output_blocked_node)
+from app.graph.nodes import (load_memory,create_agent_node,save_company_memory,input_blocked_node,security_node,output_blocked_node,structured_output_node)
 from app.graph.routers import (input_guardrail_router,tool_guardrail_router,output_guardrail_router)
 from app.tools.company_tools import (get_employee_count,get_company_location,get_working_hours)
 from app.mcp_client.client import get_mcp_tools
@@ -40,6 +40,7 @@ async def create_company_graph(checkpointer):
     builder.add_node("output_guardrail", lambda state: state)
 
     builder.add_node("security",security_node)
+    builder.add_node("structured_output",structured_output_node)
 
     builder.add_edge(
         START,
@@ -79,9 +80,11 @@ async def create_company_graph(checkpointer):
 
     builder.add_edge("security","agent")
 
-    builder.add_conditional_edges("output_guardrail",output_guardrail_router,{"safe":"save_memory","blocked":"output_blocked"})
+    builder.add_conditional_edges("output_guardrail",output_guardrail_router,{"safe":"structured_output","blocked":"output_blocked"})
 
     builder.add_edge("output_blocked",END)
+
+    builder.add_edge("structured_output","save_memory")
 
     builder.add_edge("save_memory",END)
 

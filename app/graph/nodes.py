@@ -1,5 +1,5 @@
 from langchain_core.messages import SystemMessage,AIMessage,ToolMessage
-from app.llm import llm
+from app.llm import (llm,structured_llm)
 from app.memory.service import (extract_memory,get_memory,save_memory)
 from app.guardrails.tool_guardrail import check_tool_security
 
@@ -8,9 +8,6 @@ from app.graph.state import CompanyAgentState
 
 async def load_memory(state:CompanyAgentState):
     memories = await get_memory(state["user_id"])
-
-    print("User ID", state["user_id"])
-    print("Memories", memories)
     return {
         "long_term_memory":memories,
     }
@@ -30,16 +27,24 @@ def create_agent_node(tools):
             content=(
                 f"""
                 You are an AI Company Assistant.
-                Use available tools when necessary.
+                IMPORTANT:
+                You must use an available tool whenever the user question can be answered using on of the available tools.
                 
-                IMPORTANT TOOL-CALLING RULES:
-                1. Always call tools using the exact tool schema.
-                2. Tool arguments must be a JSON object.
-                3. Never put tool arguments inside an array.
-                4. Never add explanatory text inside tool arguments.
-                5. Use exactly the parameter names defined by the tool.
-                6. Do not invent additional parameters.
+                Tool usage Rules:
+                1. You must use an available tool whenever the user request requires company specific information.
+                2. Never invent or guess company specific information.
+                3. If an available tool can answer the user question call that tool.
+                4. Do not provide the final answer before receiving the tool result.
+                5. Carefully choose the tool that best matched the user request.
+                6. Use the exact arguments required by the tool.
+                7. Do not fabricate tool results.
+                8. If no tool can answer the request, explain that the information is unavailable.
                 
+                PRIORITY
+                
+                Tool Calling > Direct Answer
+                
+                If a suitable tool exists, call it first. Do not answer from your own knowledge.
                 Long-term memories about this user {memory_text}
                 """
             ),
@@ -49,6 +54,9 @@ def create_agent_node(tools):
             system_message,
             *state["messages"],
         ])
+
+
+        print("LLM TOOL CALL:----", response.tool_calls)
 
         return {
             "messages":[
@@ -132,3 +140,19 @@ async def output_blocked_node(state:CompanyAgentState):
         ]
     }
 
+async def structured_output_node(state:CompanyAgentState):
+    res = await structured_llm.ainvoke([
+        SystemMessage(
+            content="""
+            You are the final response formatter for an AI Company Assistant.
+            
+            Read the conversation and provide the final answer to the user.
+            
+            Return only the required structured response
+            """
+        ),*state["messages"],
+    ])
+
+    return {
+        "structured_response":res
+    }

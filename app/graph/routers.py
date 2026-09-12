@@ -20,7 +20,7 @@ def input_guardrail_router(state):
 def tool_guardrail_router(state):
     last_message = state["messages"][-1]
 
-    print("Tool Guardrail Call:", last_message)
+    # print("Tool Guardrail Call:", last_message)
 
     tool_calls = getattr(last_message,"tool_calls",[])
     print("Tool Call:", tool_calls)

@@ -1,12 +1,9 @@
-LangGraph
-================
-
-LangChain gives you the components but LangGraph gives you control over how those components execute .
-
-STATE = State is the information that travels through the graph .
-
-START
-NODE = A Node is a function that performs some work.
-EDGE = An edge determine where execution goes next.
-END
-Conditional Edge =  Which path should execution take
+EVALUATION
+======================
+1- Rule Based
+2- LLM as judge
+3- Rag Eval
+4- Agent/Tool Eval
+5- Safety Eval
+6- Performance & Cost Eval
+7- End to End Eval
