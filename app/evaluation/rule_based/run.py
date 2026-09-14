@@ -4,8 +4,8 @@ from app.graph.checkpointer import (init_checkpointer,close_checkpointer)
 
 from app.graph.company_graph import create_company_graph
 
-from app.evaluation.dataset import evaluation_dataset
-from app.evaluation.runner import run_evaluation,calculate_summary
+from app.evaluation.rule_based.dataset import evaluation_dataset
+from app.evaluation.rule_based.runner import run_evaluation,calculate_summary
 
 
 if sys.platform == "win32":
