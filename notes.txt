@@ -1,7 +1,7 @@
 EVALUATION
 ======================
-1- Rule Based - Completed
-2- LLM as a judge - Correctness , Relevance , Groundness , Clarity , Completeness
+1- Rule Based - (Completed)
+2- LLM as a judge - Correctness , Relevance , Groundness , Clarity , Completeness (Completed)
 3- Rag Eval
 4- Agent/Tool Eval
 5- Safety Eval

@@ -1,0 +1,18 @@
+[
+    {
+        "id":"rag_001",
+        "question":"What is the company leave policy?"
+    },
+    {
+        "id":"rag_002",
+        "question":"What are the company working hours?"
+    },
+    {
+        "id":"rag_003",
+        "question":"Where is the company located?"
+    },
+    {
+        "id":"rag_004",
+        "question":"How many employees does the company have?"
+    }
+]
