@@ -1,0 +1,46 @@
+[
+  {
+    "id": "tool_001",
+    "question": "what is my working hours in my company?",
+    "expected_tools": [
+      "get_working_hours"
+    ],
+    "should_call_tool": true,
+    "expected_arguments": {
+      "get_working_hours": {}
+    }
+  },
+  {
+    "id": "tool_002",
+    "question": "What is the company leave policy?",
+    "expected_tools": [
+      "search_company_documents"
+    ],
+    "should_call_tool": true,
+    "expected_arguments": {
+      "search_company_documents": {}
+    }
+  },
+  {
+    "id": "tool_003",
+    "question": "Where is the company located ?",
+    "expected_tools": [
+      "search_company_documents"
+    ],
+    "should_call_tool": true,
+    "expected_arguments": {
+      "search_company_documents": {}
+    }
+  },
+  {
+    "id": "tool_004",
+    "question": "Could you tell me how many employees are their in my company?",
+    "expected_tools": [
+      "search_company_documents"
+    ],
+    "should_call_tool": true,
+    "expected_arguments": {
+      "search_company_documents": {}
+    }
+  }
+]
